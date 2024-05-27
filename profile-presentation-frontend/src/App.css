@@ -1,0 +1,86 @@
+body {
+  font-family: Arial;
+  background-color: #f4f4f4;
+  padding: 30px;
+  color: #333;
+  background-image: url('./assets/img/bg.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+.app-profile-presentation {
+  display: flex;
+  max-width: 900px;
+  justify-content: space-between;
+  margin: 0 auto 10px;
+  background-color: #efefef;
+  padding: 20px 30px;
+  border-radius: 10px;
+}
+
+.app-create-profile {
+  max-width: 900px;
+  margin: 0 auto 300px;
+  background-color: #efefef;
+  padding: 20px 30px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.profile-picture {
+  background-color: #fff;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.profile-description {
+  background-color: #fff;
+  display: inline-block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 65%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+input {
+  box-sizing: border-box;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  width: 100%;
+}
+
+button {
+  background-color: #333974;
+  color: #fff;
+  padding: 5px 10px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+button:hover {
+  opacity: 1;
+}
