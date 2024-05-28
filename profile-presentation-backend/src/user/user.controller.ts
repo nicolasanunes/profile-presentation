@@ -1,14 +1,30 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user-dto';
 import { ListUserDto } from './dto/list-user-dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerOptionsAvatar } from 'src/middlewares/uploadAvatarMiddleware';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async createUser(@Body() createUserDto: CreateUserDto) {
+  @UseInterceptors(FileInterceptor('avatar', multerOptionsAvatar))
+  async createUser(
+    @UploadedFile() avatar,
+    @Body() createUserDto: CreateUserDto,
+  ) {
+    console.log(`createdUserDto: ${JSON.stringify(createUserDto)}`);
     const createdUser = await this.userService.createUser(createUserDto);
 
     return {

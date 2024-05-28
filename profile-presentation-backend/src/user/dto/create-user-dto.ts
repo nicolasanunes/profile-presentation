@@ -7,10 +7,9 @@ export class CreateUserDto {
   @IsNotEmpty({ message: 'O nome não pode ser vazio!' })
   fullName: string;
 
-  @IsNotEmpty({ message: 'O nome não pode ser vazio!' })
+  @IsNotEmpty({ message: 'A data de nascimento não pode ser vazia!' })
   birth: string;
 
-  @IsNotEmpty({ message: 'O nome não pode ser vazio!' })
   address: string;
 
   academicEducation: string;
