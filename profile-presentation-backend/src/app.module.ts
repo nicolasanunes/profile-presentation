@@ -6,6 +6,8 @@ import { UserController } from './user/user.controller';
 import { UserModule } from './user/user.module';
 import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/user.entity';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 @Module({
   imports: [
     UserModule,
@@ -14,6 +16,9 @@ import { UserEntity } from './user/entities/user.entity';
     TypeOrmModule.forRootAsync({
       useClass: DbConfigService,
       inject: [DbConfigService],
+    }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'public'),
     }),
   ],
   controllers: [UserController],

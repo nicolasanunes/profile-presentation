@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -47,6 +48,14 @@ export class UserController {
     const savedUsers = await this.userService.listAllUsers();
 
     return savedUsers;
+  }
+
+  @Get(':imageName')
+  async getImage(@Param('imageName') imageName: string, @Res() res: any) {
+    if (imageName !== null) {
+      const imagePath = `./public/uploads/${imageName}`;
+      res.sendFile(imagePath);
+    }
   }
 
   @Delete(':id')
