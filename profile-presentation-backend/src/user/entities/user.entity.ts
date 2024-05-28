@@ -6,6 +6,9 @@ export class UserEntity {
   id: ObjectId;
 
   @Column()
+  avatar: string;
+
+  @Column()
   fullName: string;
 
   @Column()

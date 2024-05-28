@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from 'react'
 
 const CreateUser = () => {
 
@@ -14,6 +14,8 @@ const CreateUser = () => {
     hardSkills: '',
     softSkills: '',
   });
+
+  const avatarInputRef = useRef(null);
 
   const handleAvatarUpdate = (e) => {
     const file = e.target.files[0];
@@ -68,6 +70,7 @@ const CreateUser = () => {
     .then((data) => console.log(data))
     .catch((error) => console.error(error));
 
+    avatarInputRef.current.value = '';
     resetForm();
   }
 
@@ -84,19 +87,22 @@ const CreateUser = () => {
         <h2>Criar usuário:</h2>
         <form onSubmit={handleSubmit}>
           <p>Imagem do perfil:</p>
-          <input type="file" name="avatar" onChange={handleAvatarUpdate} />
+          <input type="file" name="avatar" ref={avatarInputRef} onChange={handleAvatarUpdate} />
+          <div className="display-avatar">
+              <img src={formData.avatar.preview} className="avatar-preview"/>
+          </div>
           <p>Nome:</p>
-          <input type="text" name="fullName" onChange={handleInputChange} placeholder='Digite o nome completo' />
+          <input type="text" name="fullName" value={formData.fullName} onChange={handleInputChange} placeholder='Digite o nome completo' />
           <p>Data de nascimento:</p>
-          <input type="text" name="birth" onChange={handleInputChange} placeholder='Digite a data de nascimento' />
+          <input type="text" name="birth" value={formData.birth} onChange={handleInputChange} placeholder='Digite a data de nascimento' />
           <p>Endereço:</p>
-          <input type="text" name="address" onChange={handleInputChange} placeholder='Digite o endereço' />
+          <input type="text" name="address" value={formData.address} onChange={handleInputChange} placeholder='Digite o endereço' />
           <p>Formação:</p>
-          <input type="text" name="academicEducation" onChange={handleInputChange} placeholder='Digite a formação' />
+          <input type="text" name="academicEducation" value={formData.academicEducation} onChange={handleInputChange} placeholder='Digite a formação' />
           <p>Hard skills:</p>
-          <input type="text" name="hardSkills" onChange={handleInputChange} placeholder='Digite as hard skills' />
+          <input type="text" name="hardSkills" value={formData.hardSkills} onChange={handleInputChange} placeholder='Digite as hard skills' />
           <p>Soft skills:</p>
-          <input type="text" name="softSkills" onChange={handleInputChange} placeholder='Digite as soft skills' />
+          <input type="text" name="softSkills" value={formData.softSkills} onChange={handleInputChange} placeholder='Digite as soft skills' />
           <button type='submit'>Criar usuário</button>
         </form>
       </div>

@@ -4,6 +4,8 @@ export class CreateUserDto {
   @IsEmpty()
   id: any;
 
+  avatar: string;
+
   @IsNotEmpty({ message: 'O nome não pode ser vazio!' })
   fullName: string;
 

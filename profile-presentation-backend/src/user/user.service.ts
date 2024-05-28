@@ -27,6 +27,7 @@ export class UserService {
       (user) =>
         new ListUserDto(
           user.id.toString(),
+          user.avatar,
           user.fullName,
           user.birth,
           user.address,

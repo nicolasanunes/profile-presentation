@@ -12,7 +12,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user-dto';
 import { ListUserDto } from './dto/list-user-dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerOptionsAvatar } from 'src/middlewares/uploadAvatarMiddleware';
+import { multerOptionsAvatar } from 'src/middlewares/upload-avatar.middleware';
 
 @Controller('user')
 export class UserController {
@@ -21,15 +21,16 @@ export class UserController {
   @Post()
   @UseInterceptors(FileInterceptor('avatar', multerOptionsAvatar))
   async createUser(
-    @UploadedFile() avatar,
+    @UploadedFile() avatar: Express.Multer.File,
     @Body() createUserDto: CreateUserDto,
   ) {
-    console.log(`createdUserDto: ${JSON.stringify(createUserDto)}`);
+    createUserDto.avatar = avatar.filename;
     const createdUser = await this.userService.createUser(createUserDto);
 
     return {
       user: new ListUserDto(
         createdUser.id,
+        createdUser.avatar,
         createdUser.fullName,
         createdUser.birth,
         createdUser.address,
